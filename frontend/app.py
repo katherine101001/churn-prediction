@@ -12,6 +12,7 @@ contract = st.selectbox("Contract",["Month-to-month", "Annual"])
 if st.button("Analyze & recommend"):
     payload = {"name": name, "tenure": tenure, "monthly_charges": monthly,
                "support_tickets": tickets, "annual_contract": 1 if contract=="Annual" else 0}
+    d = requests.post(N8N, json=payload, timeout=60).json()
     st.metric("Churn Probability", f"{d['churn_probability']*100:.1f}%")
     
     st.subheader(f"Risk tier: {d['risk_tier']}")
