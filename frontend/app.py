@@ -1,6 +1,6 @@
 import streamlit as st, requests
 
-N8N = ""
+N8N = "https://churn-prediction-h2ja.onrender.com/predict"
 
 st.title("Smart Customer Retention Assistant")
 name = st.text_input("Customer Name", "Jane Tan")
