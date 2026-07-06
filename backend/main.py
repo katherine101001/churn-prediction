@@ -3,7 +3,17 @@ from pydantic import BaseModel
 import joblib, pandas as pd
 
 app = FastAPI()
-model = joblib.load('churn_model.joblib')
+
+import os
+
+# 1. Get the exact folder path where main.py is currently sitting
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# 2. Glue that folder path together with the joblib filename
+MODEL_PATH = os.path.join(BASE_DIR, 'churn_model.joblib')
+
+# 3. Load the model safely using the full absolute path
+model = joblib.load(MODEL_PATH)
 
 class Customer(BaseModel):
     name: str
